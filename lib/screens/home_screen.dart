@@ -114,13 +114,16 @@ class _HomeScreenState extends State<HomeScreen> {
             : SafeArea(
                 child: Column(
                   children: [
+                    const SizedBox(height: 20),
                     Expanded(
                       flex: 1,
                       child: GradientText(
                         'T R A C K O R Y',
                         style: GoogleFonts.inter(
-                          textStyle: TextStyle(fontSize: 40),
-                          fontWeight: FontWeight.bold,
+                          textStyle: const TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         colors: [
                           Theme.of(context).colorScheme.onTertiary,
