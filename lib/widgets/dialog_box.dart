@@ -82,7 +82,7 @@ class _DialogBoxState extends State<DialogBox> {
                   borderSide: BorderSide(width: 3),
                 ),
                 contentPadding: EdgeInsets.all(20),
-                hintText: 'Enter Task',
+                hintText: 'E N T E R T A S K',
               ),
             ),
             TextField(
@@ -94,7 +94,7 @@ class _DialogBoxState extends State<DialogBox> {
                   borderSide: BorderSide(width: 3),
                 ),
                 contentPadding: EdgeInsets.all(20),
-                hintText: 'Enter detail',
+                hintText: 'E N T E R D E T A I L',
               ),
             ),
             TextField(
@@ -106,7 +106,7 @@ class _DialogBoxState extends State<DialogBox> {
                   borderSide: BorderSide(width: 3),
                 ),
                 contentPadding: EdgeInsets.all(20),
-                hintText: 'Enter date',
+                hintText: 'S E L E C T D A T E',
                 suffixIcon: IconButton(
                   onPressed: selectDate,
                   icon: Icon(Icons.calendar_month),
@@ -122,7 +122,7 @@ class _DialogBoxState extends State<DialogBox> {
                   borderSide: BorderSide(width: 3),
                 ),
                 contentPadding: EdgeInsets.all(20),
-                hintText: 'E N T E R T I M E',
+                hintText: 'S E L E C T T I M E',
                 suffixIcon: IconButton(
                   onPressed: () => _selectTime(),
                   icon: Icon(Icons.access_time_sharp),
