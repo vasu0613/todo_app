@@ -7,6 +7,7 @@ class TodoTile extends StatelessWidget {
   final bool taskCompleted;
   final String? taskDetail;
   final String? dateTime;
+  final String? time;
   Function(bool?)? onChanged;
   Function(BuildContext)? deleteTask;
 
@@ -16,6 +17,7 @@ class TodoTile extends StatelessWidget {
     required this.taskCompleted,
     this.taskDetail,
     this.dateTime,
+    this.time,
     required this.onChanged,
     required this.deleteTask,
   });
@@ -70,15 +72,29 @@ class TodoTile extends StatelessWidget {
               ),
             ),
           ),
-          trailing: Text(
-            dateTime!,
-            style: GoogleFonts.montserrat(
-              textStyle: TextStyle(
-                color: Theme.of(context).colorScheme.secondary,
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
+          trailing: Column(
+            children: [
+              Text(
+                dateTime!,
+                style: GoogleFonts.montserrat(
+                  textStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-            ),
+              Text(
+                time!,
+                style: GoogleFonts.montserrat(
+                  textStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

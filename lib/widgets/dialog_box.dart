@@ -6,6 +6,7 @@ class DialogBox extends StatefulWidget {
   final TextEditingController taskController;
   final TextEditingController detailController;
   final TextEditingController dateController;
+  final TextEditingController timeController;
   VoidCallback onAdd;
   VoidCallback onCancel;
   DialogBox({
@@ -13,6 +14,7 @@ class DialogBox extends StatefulWidget {
     required this.taskController,
     required this.detailController,
     required this.dateController,
+    required this.timeController,
     required this.onAdd,
     required this.onCancel,
   });
@@ -22,6 +24,8 @@ class DialogBox extends StatefulWidget {
 }
 
 class _DialogBoxState extends State<DialogBox> {
+  TimeOfDay selectedTime = TimeOfDay.now();
+
   Future<void> selectDate() async {
     DateTime? picked = await showDatePicker(
       context: context,
@@ -36,11 +40,24 @@ class _DialogBoxState extends State<DialogBox> {
     }
   }
 
+  Future<void> _selectTime() async {
+    final TimeOfDay? pickedS = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+      initialEntryMode: TimePickerEntryMode.input,
+    );
+    if (pickedS != null && pickedS != selectedTime) {
+      setState(() {
+        widget.timeController.text = pickedS.format(context);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        'ADD TASK',
+        'A D D T A S K',
         style: GoogleFonts.inter(
           textStyle: TextStyle(
             fontSize: 35,
@@ -51,7 +68,7 @@ class _DialogBoxState extends State<DialogBox> {
       ),
       backgroundColor: Theme.of(context).colorScheme.tertiary,
       content: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.35,
+        height: MediaQuery.of(context).size.height * 0.4,
         width: MediaQuery.of(context).size.width * 0.9,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -96,12 +113,28 @@ class _DialogBoxState extends State<DialogBox> {
                 ),
               ),
             ),
+            TextField(
+              controller: widget.timeController,
+              keyboardType: TextInputType.datetime,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(width: 3),
+                ),
+                contentPadding: EdgeInsets.all(20),
+                hintText: 'E N T E R T I M E',
+                suffixIcon: IconButton(
+                  onPressed: () => _selectTime(),
+                  icon: Icon(Icons.access_time_sharp),
+                ),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Button(text: 'Cancel', onPressed: widget.onCancel),
+                Button(text: 'C A N C E L', onPressed: widget.onCancel),
                 const SizedBox(width: 10),
-                Button(text: 'Add', onPressed: widget.onAdd),
+                Button(text: 'A D D', onPressed: widget.onAdd),
               ],
             ),
           ],

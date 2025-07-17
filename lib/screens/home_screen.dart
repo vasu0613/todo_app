@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _taskController = TextEditingController();
   final TextEditingController _detailController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _timeController = TextEditingController();
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
@@ -47,10 +48,12 @@ class _HomeScreenState extends State<HomeScreen> {
         false,
         _detailController.text,
         _dateController.text,
+        _timeController.text,
       ]);
       _taskController.clear();
       _detailController.clear();
       _dateController.clear();
+      _timeController.clear();
     });
     Navigator.of(context).pop();
     db.updateDataBase();
@@ -64,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
           taskController: _taskController,
           detailController: _detailController,
           dateController: _dateController,
+          timeController: _timeController,
           onAdd: saveNewTask,
           onCancel: () => Navigator.of(context).pop(),
         );
@@ -142,6 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             taskCompleted: db.toDoList[index][1],
                             taskDetail: db.toDoList[index][2],
                             dateTime: db.toDoList[index][3],
+                            time: db.toDoList[index][4],
                             onChanged: (value) => checkBoxChanged(value, index),
                             deleteTask: (context) => removeTask(index),
                           );
